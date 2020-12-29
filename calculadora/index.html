@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="/bootstrap-5.0.0-beta1-dist/css/bootstrap.css">
+</head> 
+<body><br>
+    <h1>Calculadora</h1>
+    
+    <form action="" name="calculadora" class="calcs" ><br>
+        <div><input type="text" name="tela" placeholder="Digite algo meu filho..."></div><br>
+
+        <div>
+            <input type="button" value="7" class="botao" onclick="botao(value)">
+            <input type="button" value="8" class="botao" onclick="botao(value)">
+            <input type="button" value="9" class="botao" onclick="botao(value)">
+            <input type="button" value="+" class="botao" onclick="botao(value)">
+        </div>
+        <div>
+            <input type="button" value="4" class="botao" onclick="botao(value)">
+            <input type="button" value="5" class="botao" onclick="botao(value)">
+            <input type="button" value="6" class="botao" onclick="botao(value)">
+            <input type="button" value="-" class="botao" onclick="botao(value)">
+        </div>
+
+            <div>
+
+
+            <input type="button" value="3" class="botao" onclick="botao(value)">
+            <input type="button" value="2" class="botao" onclick="botao(value)">
+            <input type="button" value="1" class="botao" onclick="botao(value)">
+            <input type="button" value="/" class="botao" onclick="botao(value)">
+        </div>
+            <input type="button" value="C" class="botao" onclick="Limpar()">
+            <input type="button" value="0" class="botao" onclick="botao(value)">
+            <input type="button" value="=" class="botao" onclick="Resultado()" id="rest">
+            <input type="button" value="*" class="botao" onclick="botao(value)">
+        </div>
+<div id="mens">
+terra
+</div> <br>
+
+<button type="button" class="btn btn-dark"><a  href="/index.html" >Voltar</a></button>
+
+</form>
+</body>
+
+
+<script>
+    let m = document.querySelector('div#mens')
+    m.style.color = 'blue'
+
+    let res 
+    
+    m.innerHTML= ''
+
+    function botao(num) {
+     valor =   document.calculadora.tela.value += num
+     
+    }
+    function Resultado() {
+            res =  eval(valor)
+        document.calculadora.tela.value = res
+    }
+    
+    function Limpar() {
+        document.calculadora.tela.value =''
+    }
+    document.write(`O promt escreveu: ${esc}`)
+    
+</script>
+
+</html>
