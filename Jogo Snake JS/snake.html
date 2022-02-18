@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>SnakeGame</title>
+</head>
+<body>
+    <canvas id="tela" width="400" height="400"></canvas> <!--Tela do jogo-->
+    <input type="button" value="->" onclick="">
+    <input type="button" value="<-" onclick="">
+    <input type="button" value="->" onclick="" >
+    
+    <div  > 
+        <input type="button" value="<-" onclick=""  </a>
+    </div>
+    <script>
+window.onload = function(){ //É acionado quando a página inteira é carregada, incluindo seu conteúdo (imagens, CSS, scripts, etc.).
+
+    var tela = document.getElementById('tela');
+    var ctx = tela.getContext("2d"); //stage.getContext() retorna um contexto de desenho no canvas, ou null se o contexto identificado não é suportado.
+    //const img = new Image();
+
+    document.addEventListener("keydown", tecla); /*Para registrar mais de uma espera de evento como alvo, chame addEventListener() 
+    para o mesmo alvo mas com diferentes tipos de evento ou captura de parâmetros.*/
+
+    setInterval(game, 120); //método continua chamando a função até clearInterval()ser chamado ou a janela ser fechada.
+
+    const velCasas = 1; //Define o numero de casas que a cobra vai andar
+
+    var velocidadeX = velocidadeY = 0; //(Velocidade X) e (velocidade Y) igual a 0
+    var pontoX = 10; //Iniciar no (ponto X)
+    var pontoY = 15; //Iniciar no (ponto Y)
+    var tamanhoPecas = 20; //Tamanho da peça
+    var quantidadePecas = 20; //Quantidade de peças
+   
+ var posicaoMacanX = posicaoMacanY = 15; //Posição da Maçan na tela (ax = Apple X) (ay = Apple Y) 
+
+    var rastro = []; //Elementos no rastro da cobra
+    tamanhoCalda = 5; // Tamanho da calda
+
+
+
+    function game(){
+
+        pontoX += velocidadeX;
+        pontoY+= velocidadeY;
+if (pontoX <0){
+    pontoX = quantidadePecas-1;
+}
+if (pontoX > quantidadePecas-1){
+    pontoX=0;
+}
+if(pontoY <0 ){
+    pontoY = quantidadePecas-1;
+}
+if(pontoY>quantidadePecas-1){
+    pontoY = 0;
+}
+    ctx.fillStyle = "black"; /*A propriedade CanvasRenderingContext2D.fillStyle da API do 
+    Canvas 2D especifica a cor ou o estilo para usar regiões internas. O valor inicial é #000 (preto).*/
+
+    ctx.fillRect(0,0, tela.width, tela.height); /*O método CanvasRenderingContext2D.fillRect() da API Canvas 2D desenha um
+    retângulo preenchido na posição (x, y), 
+    no qual o tamanho é determinado pela width (largura) e pela height (altura), e cujo o estilo é determinado pelo atributo fillStyle.*/
+    //img.src = 'img/Cabeca.gif';
+
+
+ctx.fillStyle = "red";
+ctx.fillRect (posicaoMacanX*tamanhoPecas, posicaoMacanY*tamanhoPecas, tamanhoPecas,tamanhoPecas);
+ctx.fillStyle = "gray";
+for (var caldaCresce = 0; caldaCresce < rastro.length; caldaCresce++){
+    ctx.fillRect(rastro[caldaCresce].x*tamanhoPecas,rastro[caldaCresce].y*tamanhoPecas, tamanhoPecas-1, tamanhoPecas-1);
+if(rastro[caldaCresce].x==pontoX && rastro[caldaCresce].y==pontoY){
+
+    tamanhoCalda = 5
+    
+
+    //= velocidadeY = velocidadeX;
+    
+    
+}
+
+}
+rastro.push({x:pontoX,y:pontoY})  //O método push() adiciona um ou mais elementos ao final de um array e retorna o novo comprimento desse array.
+while(rastro.length>tamanhoCalda){
+    rastro.shift();   //O método shift()remove o primeiro elemento de um array e retorna esse elemento. Este método muda o tamanho do array. 
+}
+if (posicaoMacanX==pontoX && posicaoMacanY==pontoY){
+    tamanhoCalda++;
+    posicaoMacanX= Math.floor(Math.random()*quantidadePecas);//Vai selecionar o menor numero aleatorio gerado no intervalo de 0,1 '*'(multiplicar) pela variavel posicaoMacanX
+    posicaoMacanY= Math.floor(Math.random()*quantidadePecas);
+}
+
+
+
+}
+            function tecla(event){
+                    switch(event.keyCode){ /*switch avalia uma expressão, combinando o valor da expressão para um cláusula case, 
+                        e executa as instruções  associadas ao case.*/
+                        
+                        case 37: //Pra esquerda
+                        velocidadeX = -velCasas;
+                        velocidadeY = 0;
+                        break;
+                        
+                        case 38: //Pra cima
+                        velocidadeX = 0;
+                        velocidadeY = -velCasas;
+                        break;
+
+                        case 39: //Pra direita
+                        velocidadeX = velCasas;
+                        velocidadeY = 0;
+                        break;
+                         
+                        case 40: //Pra baixo
+                        velocidadeX = 0;
+                        velocidadeY = velCasas;
+                        break;
+
+                        default:
+                            break;
+                    }
+
+
+            }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
